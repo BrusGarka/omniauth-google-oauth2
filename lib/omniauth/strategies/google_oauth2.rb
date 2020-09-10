@@ -61,6 +61,8 @@ module OmniAuth
 
       extra do
         hash = {}
+        
+
         hash[:id_token] = access_token['id_token']
         if !options[:skip_jwt] && !access_token['id_token'].nil?
           decoded = ::JWT.decode(access_token['id_token'], nil, false).first
@@ -82,6 +84,7 @@ module OmniAuth
           hash[:id_info] = decoded
         end
         hash[:raw_info] = raw_info unless skip_info?
+        hash[:ovo] = access_token
         prune! hash
       end
 
